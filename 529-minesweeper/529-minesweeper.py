@@ -2,23 +2,12 @@ class Solution:
     def inbound(self, r, c):
         return 0 <= r < self.rows and 0 <= c < self.cols
     def isadj(self, r, c,board):
+        self.Dir = [(-1,-1), (-1,0), (-1,1), (0,1), (0,-1), (1,-1), (1,0), (1,1)]
         count = 0
-        if self.inbound(r - 1, c - 1) and board[r - 1][c - 1] == "M":
-            count += 1
-        if self.inbound(r - 1, c) and board[r - 1][c] == "M":
-            count += 1
-        if self.inbound(r - 1, c + 1) and board[r - 1][c + 1] == "M":
-            count += 1
-        if self.inbound(r + 1, c + 1) and board[r + 1][c + 1] == "M":
-            count += 1
-        if self.inbound(r + 1, c) and board[r + 1][c] == "M":
-            count += 1
-        if self.inbound(r + 1, c - 1) and board[r + 1][c - 1] == "M":
-            count += 1
-        if self.inbound(r, c + 1) and board[r ][c + 1] == "M":
-            count += 1
-        if self.inbound(r, c - 1) and board[r][c - 1] == "M":
-            count += 1
+        for d in self.Dir:
+            if self.inbound(r + d[0], c + d[1]) and board[r + d[0]][ c + d[1]] == "M":
+                count += 1
+                
         return count
     def dfs(self, row, col, board):
         if self.inbound(row,col):
@@ -30,14 +19,8 @@ class Solution:
                     board[row][col] = str(self.isadj(row, col, board))
                     return
                 board[row][col] = "B"
-                self.dfs(row - 1,col, board)# up
-                self.dfs(row, col - 1, board)# Left
-                self.dfs(row + 1, col, board)# Down
-                self.dfs(row, col + 1, board)# Right
-                self.dfs(row - 1,col - 1, board)# up left 
-                self.dfs(row + 1, col + 1, board)# down right
-                self.dfs(row - 1, col + 1, board)# up right
-                self.dfs(row + 1, col - 1, board)# down left
+                for d in self.Dir:
+                    self.dfs(row + d[0], col + d[1], board)
         return
         
         
