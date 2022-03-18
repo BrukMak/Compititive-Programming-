@@ -20,12 +20,11 @@ class Solution:
         
         newNode = TreeNode(ans[0])
         ansNode = newNode
-        
+        # newNode = newNode.right
         for i in range(1, len(ans)):
             newNode.right = TreeNode(ans[i])
             newNode = newNode.right
-        print(ansNode)
-        # newNode = TreeNode(ans)
+        
         
         return ansNode
             
