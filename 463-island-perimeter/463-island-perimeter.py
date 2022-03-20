@@ -2,20 +2,17 @@ class Solution:
     def islandPerimeter(self, grid: List[List[int]]) -> int:
         rows = len(grid)
         cols = len(grid[0])
-        visited = set()
         perimeter = 0
         def dfs(row, col):
             nonlocal perimeter
-            if (row, col) in visited:
-                return
             
             Dir = [[0,1], [0, -1], [1, 0], [-1, 0]]
             
             if row < 0 or row >= rows or col < 0 or col >= cols or grid[row][col] == 0:
                 perimeter += 1
             
-            else:
-                visited.add((row, col))
+            elif grid[row][col] == 1:
+                grid[row][col] = 2
                 for d in Dir:
                     
                     dfs(row + d[0], col + d[1])
