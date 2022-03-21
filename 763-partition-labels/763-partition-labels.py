@@ -1,7 +1,6 @@
 class Solution:
     def partitionLabels(self, s: str) -> List[int]:
         r = l = sp = 0
-        # visited = set()
         ans = []
         while r < len(s) :
             for i in range(r + 1, len(s)):
