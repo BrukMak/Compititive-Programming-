@@ -1,6 +1,7 @@
 class Solution:
     def partitionLabels(self, s: str) -> List[int]:
         ans = []
+        
         idx_dict = defaultdict(list)
         
         
