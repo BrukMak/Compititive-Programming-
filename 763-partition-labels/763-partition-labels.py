@@ -1,27 +1,32 @@
 class Solution:
     def partitionLabels(self, s: str) -> List[int]:
-        r = l = sp = 0
         ans = []
-        while r < len(s) :
-            for i in range(r + 1, len(s)):
-                if s[sp] == s[i]:
-                    r = i
-            if r == l:
-                ans.append(1)
-                r += 1
-                l += 1
-                sp = l
-                continue
-            elif r == len(s) - 1:
-                ans.append(r - l + 1)
-                break
-                
-            elif sp == r:
-                ans.append(r - l + 1)
-                sp += 1
-                r += 1
-                l = r 
-                continue
-            sp += 1
-        return ans
+        idx_dict = defaultdict(list)
         
+        
+        # Make a dictionary containing all the index for the occurrence of each char
+        for i in range(len(s)):
+            idx_dict[s[i]].append(i)
+            
+        # Make 2d list using the indices from the dictionary
+        intervals = list(idx_dict.values())
+        
+        ptr = 0
+        while ptr < len(intervals):
+            s = intervals[ptr][0]
+            e = intervals[ptr][-1]
+            
+            while True:
+                ptr += 1
+                if ptr < len(intervals) and e > intervals[ptr][-1]:
+                    continue
+                else:
+                    if  ptr < len(intervals) and e > intervals[ptr][0]:
+                        e = intervals[ptr][-1]
+                    else:
+                        ans.append(e - s + 1)
+                        break
+        return ans
+                    
+            
+            
