@@ -1,7 +1,6 @@
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
         di = defaultdict(int)
-        w_size = 0
         left = right = 0
         ans = 0
         cur_max = 0
