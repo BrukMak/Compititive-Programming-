@@ -17,4 +17,4 @@ class Solution:
         for i in range(len(nums)):
             lis(i)
         
-        return max(memo) 
+        return max(memo)
