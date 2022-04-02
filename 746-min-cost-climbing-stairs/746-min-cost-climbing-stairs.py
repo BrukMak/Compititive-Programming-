@@ -2,11 +2,10 @@ class Solution:
     def minCostClimbingStairs(self, cost: List[int]) -> int:
         
         di ={}
-        def out_of_bound(idx):
-            return idx >= len(cost)
+        
         
         def dp(idx):
-            if out_of_bound(idx):
+            if idx >= len(cost):
                 return 0
             if idx in di: return di[idx]
             
