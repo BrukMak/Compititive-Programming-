@@ -5,8 +5,7 @@ class Solution:
         for i in nums:
             freq[i] += 1
         
-        set_nums = set(nums)
-        set_nums = list(set_nums)
+        set_nums = list(freq.keys())
         ans = [0] * len(set_nums)
         
         ans[-1] = set_nums[-1] * freq[set_nums[-1]] 
