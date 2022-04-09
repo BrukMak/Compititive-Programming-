@@ -13,14 +13,14 @@ class Solution:
         def dfs(node):
             flag = True
             visited[node] = grey
-            if node in graph:
-                for neighbour in graph[node]:
-                    if visited[neighbour] == white:
-                        flag = dfs(neighbour) 
-                    elif visited[neighbour] == grey:
-                        return False
-                    if not flag:
-                        return flag
+            
+            for neighbour in graph[node]:
+                if visited[neighbour] == white:
+                    flag = dfs(neighbour) 
+                elif visited[neighbour] == grey:
+                    return False
+                if not flag:
+                    return flag
                     
             ans.append(node)
             visited[node] = black
