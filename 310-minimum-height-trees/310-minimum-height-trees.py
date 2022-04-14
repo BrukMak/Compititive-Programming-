@@ -2,10 +2,10 @@ class Solution:
     def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
         if n == 1:
             return [0]
-        adj_list = defaultdict(list)
+        adj_list = defaultdict(set)
         for f, s in edges:
-            adj_list[f].append(s)
-            adj_list[s].append(f)
+            adj_list[f].add(s)
+            adj_list[s].add(f)
             
         queue = []
         for key in adj_list:
