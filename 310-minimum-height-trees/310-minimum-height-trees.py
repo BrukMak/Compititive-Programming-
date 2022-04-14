@@ -3,8 +3,6 @@ class Solution:
         if n == 1:
             return [0]
         adj_list = defaultdict(list)
-        graph = {i:[] for i in range(n)}
-        print(graph)
         for f, s in edges:
             adj_list[f].append(s)
             adj_list[s].append(f)
