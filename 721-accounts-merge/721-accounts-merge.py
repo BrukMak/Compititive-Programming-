@@ -42,10 +42,8 @@ class Solution:
                         temp_ans.append(it)
             if temp_ans:
                 name = temp_ans[0]
-                temp_ans = set(temp_ans)
+                temp_ans = list(set(temp_ans))
                 temp_ans.remove(name)
-                temp_ans = list(temp_ans)
-                
                 temp_ans.sort()
                 temp_ans = [name] + temp_ans 
                 ans.append(temp_ans)
