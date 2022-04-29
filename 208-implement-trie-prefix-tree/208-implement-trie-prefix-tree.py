@@ -10,6 +10,8 @@ class Trie:
     def insert(self, word: str) -> None:
         cur = self.root
         for char in word:
+            if char not in cur.nodes:
+                cur.nodes[char] = TrieNode()
             cur = cur.nodes[char]
         cur.is_word = True
         
