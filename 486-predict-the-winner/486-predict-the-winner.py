@@ -7,9 +7,12 @@ class Solution:
             if i > j:return 0
             if i == j:
                 return nums[j]
-            op1 = nums[i] + min(helper(i+2, j), helper(i+1, j-1))
-            op2 = nums[j] + min(helper(i+1,j-1), helper(i, j-2))
-            return max(op1, op2) 
+            if (i,j) not in memo:
+                
+                op1 = nums[i] + min(helper(i+2, j), helper(i+1, j-1))
+                op2 = nums[j] + min(helper(i+1,j-1), helper(i, j-2))
+                memo[(i,j)] = max(op1, op2)
+            return memo[(i,j)] 
         
         
         
