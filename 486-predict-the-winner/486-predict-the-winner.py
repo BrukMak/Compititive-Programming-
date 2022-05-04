@@ -1,7 +1,6 @@
 class Solution:
     def PredictTheWinner(self, nums: List[int]) -> bool:
         N = len(nums)
-        half = sum(nums) / 2
         memo = {}
         def helper(i, j):
             if i > j:return 0
@@ -16,7 +15,7 @@ class Solution:
         
         
         
-        return helper(0, N - 1) >= half
+        return 2 * helper(0, N - 1) >= sum(nums)
     
         
         
