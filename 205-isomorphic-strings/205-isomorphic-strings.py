@@ -3,7 +3,7 @@ class Solution:
         vocabulary = {}
         for ch1, ch2 in zip(s, t):
             if ch1 not in vocabulary:
-                if ch2 in set(vocabulary.values()):
+                if ch2 in vocabulary.values():
                     return False
                 vocabulary[ch1] = ch2
                 
