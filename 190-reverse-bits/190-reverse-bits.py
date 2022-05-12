@@ -4,9 +4,12 @@ class Solution:
         n = bin(n)[2:][::-1]
         
         itr = 32 - len(n) 
-        n += "0"*itr
+        temp = [n]
+        temp.append("0"*itr)
         
-        res = int(n, 2)
+        n = "".join(temp)
         
-        return res 
+        n = int(n, 2)
+        
+        return n 
         
