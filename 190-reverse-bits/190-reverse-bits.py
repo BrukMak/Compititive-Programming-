@@ -4,10 +4,8 @@ class Solution:
         n = bin(n)[2:][::-1]
         
         itr = 32 - len(n) 
-        while itr:
-            n += '0'
-            itr -= 1
-            
+        n += "0"*itr
+        
         res = int(n, 2)
         
         return res 
