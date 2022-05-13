@@ -3,15 +3,15 @@ class Solution:
         
         res = []
         
-        def rec(idx, cur_res):
-            
-            if idx >= len(nums):
-                cur_res.sort()
-                if cur_res not in res:
-                    res.append(cur_res)
-                return
-            rec(idx+1, cur_res + [nums[idx]])
-            rec(idx+1, cur_res)
-        
-        rec(0, [])
+        for i in range(2**len(nums)):
+            mask = list(bin(i)[2:].strip())
+            dif = len(nums)-len(mask)
+            cur_res = []
+            for j in range(len(mask)-1, -1, -1):
+                
+                if mask[j] == '1':
+                    cur_res.append(nums[j+dif])
+            cur_res.sort()
+            if cur_res not in res:
+                res.append(cur_res)
         return res
