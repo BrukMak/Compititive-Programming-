@@ -4,17 +4,18 @@ class Solution:
             return False
         
         @lru_cache(maxsize = None)
+        
         def dp(s1, s2, s3):
             if s1 == "" and s2 == "" and s3 == "":
                 return True
-            p = 0
-            if p < len(s1) and p < len(s2) and s1[p] == s3[p] and s2[p] == s3[p]:
+            
+            if len(s1) > 0 and len(s2) > 0 and s1[0] == s3[0] and s2[0] == s3[0]:
                 
                 return dp(s1[1:], s2, s3[1:]) or dp(s1, s2[1:], s3[1:])
                 
-            elif p < len(s1) and s1[p] == s3[p]:
+            elif len(s1) > 0 and s1[0] == s3[0]:
                 return dp(s1[1:], s2, s3[1:])
-            elif p < len(s2) and s2[p] == s3[p]:
+            elif len(s2) > 0 and s2[0] == s3[0]:
                 
                 return dp(s1, s2[1:], s3[1:])
             else: 
