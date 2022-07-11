@@ -1,11 +1,10 @@
 class Solution:
     def minSubArrayLen(self, target: int, nums: List[int]) -> int:
-        if sum(nums) < target:
-            return 0
+        
         N = len(nums)
-        preSum = 0
-        ans = len(nums)
-        start = 0
+        preSum , start = 0, 0
+        ans = float('inf')
+        
         for i in range(N):
             preSum += nums[i]
             while preSum >= target:
@@ -14,7 +13,7 @@ class Solution:
                 start += 1
                 
         
-        return ans
+        return 0 if ans == float('inf') else ans
             
                 
             
