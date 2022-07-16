@@ -1,11 +1,17 @@
 class Solution:
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
-        dist = []
-        for x, y in points:
-            dist.append(((x**2 + y**2), [x,y]))
-        dist.sort()
+        distance_idx = []
+        for idx, [x, y] in enumerate(points):
+            distance_idx.append([(x**2 + y**2), idx])
+        distance_idx.sort()
         
         res = []
-        for i in range(k):
-            res.append(dist[i][1])
+        
+        for idx in range(k):
+            op = distance_idx[idx][1]
+            res.append(points[op])
+            
         return res
+            
+            
+        
