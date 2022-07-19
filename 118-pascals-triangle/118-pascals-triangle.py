@@ -7,13 +7,13 @@ class Solution:
         res = [[1]]
         n = 1
         while n < numRows:
-            temp = res[-1].copy()
-            temp.insert(0,0)
-            temp.append(0)
+            cur = [0]
+            cur += res[-1]
+            cur.append(0)
             l , r = 0, 1
             ans = []
-            while r < len(temp):
-                ans.append(temp[l]+temp[r])
+            while r < len(cur):
+                ans.append(cur[l]+cur[r])
                 l += 1
                 r += 1
             n += 1
