@@ -1,11 +1,10 @@
 class Solution:
     def rearrangeArray(self, nums: List[int]) -> List[int]:
-        nums.sort()
-        ptr = 1
-        while ptr < len(nums)-1:
-            
-            nums[ptr], nums[ptr+1] = nums[ptr+1], nums[ptr]
-            ptr += 2
+        
+        for i in range(1, len(nums)-1):
+            if nums[i-1] < nums[i] < nums[i+1] or nums[i-1] > nums[i] > nums[i+1]:
+                nums[i], nums[i+1] = nums[i+1], nums[i]
+
         return nums
         
         
