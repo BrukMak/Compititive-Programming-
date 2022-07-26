@@ -2,9 +2,10 @@ class Solution:
     def maximumUnits(self, boxTypes: List[List[int]], truckSize: int) -> int:
         
         boxTypes.sort(key = lambda x: x[1], reverse = True)
-        res, ptr = 0, 0
-        while ptr < len(boxTypes) and truckSize:
-                res += boxTypes[ptr][1] * min(truckSize, boxTypes[ptr][0])
-                truckSize -= min(truckSize, boxTypes[ptr][0])
-                ptr += 1
+        res = 0
+        for i in range(len(boxTypes)):
+                res += boxTypes[i][1] * min(truckSize, boxTypes[i][0])
+                truckSize -= min(truckSize, boxTypes[i][0])
+                if truckSize <= 0:
+                    break
         return res
