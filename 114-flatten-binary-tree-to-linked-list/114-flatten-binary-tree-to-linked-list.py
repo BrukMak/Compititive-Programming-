@@ -9,17 +9,28 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
-        preOrder = []
+        
         def dfs(node):
             if not node:
                 return
-            preOrder.append(node)
-            dfs(node.left)
-            dfs(node.right)
+            
+            if node.left == node.right:
+                return node
+            
+            l = dfs(node.left)
+            r = dfs(node.right)
+            
+            curL = l
+            while curL and curL.right:
+                curL = curL.right
+                
+            if l:
+                curL.right = r
+                node.right = l
+            node.left = None
+            
+            return node
+            
         dfs(root)
         
-        for i in range(1, len(preOrder)):
-            preOrder[i-1].left = None
-            preOrder[i-1].right = preOrder[i]
-            preOrder[i].left = None
         
