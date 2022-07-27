@@ -14,22 +14,22 @@ class Solution:
         def dfs(node):
             if not node:
                 return 
-            res.append(node)
+            if node.child == node.next:
+                return (node, node)
             
-            dfs(node.child)
-            dfs(node.next)
-        
-        dfs(head)
-        
-        if res: 
-
-            for i in range(1, len(res)):
-                res[i].prev = res[i-1]
-                res[i-1].next = res[i]
-                res[i].child = None
-                res[i-1].child = None
-            return res[0]
-        return None
+            
+            ch = dfs(node.child)
+            nxt = dfs(node.next)
+            node.child = None
+            if ch:
+                node.next = ch[0]
+                ch[0].prev = node
                 
+            if ch and nxt:
+                ch[1].next = nxt[0]
+                nxt[0].prev = ch[1]
+            return (node, nxt[1]) if nxt else (node, ch[1])
             
-        
+            
+        dfs(head)
+        return head
