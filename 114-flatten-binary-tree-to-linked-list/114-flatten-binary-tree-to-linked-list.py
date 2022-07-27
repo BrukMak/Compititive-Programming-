@@ -15,21 +15,24 @@ class Solution:
                 return
             
             if node.left == node.right:
-                return node
+                return (node, node)
             
             l = dfs(node.left)
             r = dfs(node.right)
             
-            curL = l
-            while curL and curL.right:
-                curL = curL.right
                 
-            if l:
-                curL.right = r
-                node.right = l
-            node.left = None
-            
-            return node
+            if l and r:
+                l[1].right = r[0]
+                node.right = l[0]
+                node.left = None
+                return (node, r[1])
+            elif l:
+                node.right = l[0]
+                node.left = None
+                return (node, l[1])
+            else:
+                node.left = None
+                return (node, r[1])
             
         dfs(root)
         
