@@ -20,19 +20,18 @@ class Solution:
             l = dfs(node.left)
             r = dfs(node.right)
             
+            node.left = None
+            
+            if l:
+                node.right = l[0]
                 
-            if l and r:
+            if r and l:
                 l[1].right = r[0]
-                node.right = l[0]
-                node.left = None
-                return (node, r[1])
-            elif l:
-                node.right = l[0]
-                node.left = None
-                return (node, l[1])
-            else:
-                node.left = None
-                return (node, r[1])
+                
+            return (node, r[1])  if r else (node, l[1])
+                
+            
+                
             
         dfs(root)
         
