@@ -1,14 +1,12 @@
 class Solution:
-    def numDecodings(self, s: str, memo = {}) -> int:
-        if s in memo: return memo[s]
+    @lru_cache(None)
+    def numDecodings(self, s: str) -> int:
         if s == "": return 1
         if s[0] == "0": return 0
 
-        one = self.numDecodings(s[1:], memo)
+        one = self.numDecodings(s[1:])
         if len(s) > 1 and int(s[:2]) < 27:
-            two = self.numDecodings(s[2:], memo)
-            memo[s] = one + two
-            return memo[s]
+            two = self.numDecodings(s[2:])
+            return one + two
         
-        memo[s] = one
         return one
