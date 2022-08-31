@@ -2,7 +2,6 @@ class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
         res = []
         s1, s2 = ["("] * n , [")"] * n
-        @lru_cache(None)
         def generator(i1, i2, cur):
             if i1 >= n and i2 >= n:
                 return cur
