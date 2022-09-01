@@ -19,9 +19,5 @@ class Solution:
                     idx += 1
                     ptr -= 1
                 ptr += 1
-        ans = []
-        for i in range(numRows):
-            ans += res[i]
-            
-        return "".join(ans)
+        return "".join(["".join(l) for l in res])
                 
