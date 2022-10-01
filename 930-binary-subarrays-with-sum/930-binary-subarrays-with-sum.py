@@ -1,20 +1,21 @@
 class Solution:
     def numSubarraysWithSum(self, nums: List[int], goal: int) -> int:
         
-        # Finding the number of subarrays that have sum atmost goal
-        # 0, 1 ... goal after having that decreament the number of subarrays
-        # that have a sum at most goal-1 which gives the number of subarrays
-        # with sum equal to goal only
+        # Approach two
         
-        def upToGoal(arr, g):
-            if g < 0: return 0
-            l, count = 0, 0
-            cur = 0
-            for r  in range(len(arr)):
-                cur += arr[r]
-                while cur > g:
-                    cur -= arr[l]
-                    l += 1
-                count += r - l + 1
-            return count
-        return upToGoal(nums, goal) - upToGoal(nums, goal-1)
+        # Have a dictionary tha has sum : count, running sum and the count of the sum
+        # For each running / prefix sum, check if rSum - goal in dect, if so increament
+        # the result by its count
+        
+        rSum = defaultdict(int)
+        rSum[0] = 1
+        res, cSum = 0, 0
+        
+        for num in nums:
+            cSum += num
+            print(cSum)
+            if cSum - goal in rSum:
+                res += rSum[cSum - goal]
+            rSum[cSum] += 1
+        return res
+        
