@@ -11,7 +11,7 @@ class Solution:
             if not node:
                 return
             if node.left == node.right:
-                return True if sum_ + node.val == targetSum else False
+                return sum_ + node.val == targetSum
             return pathSum(node.left, sum_ + node.val) or pathSum(node.right, sum_ + node.val)
         
         return pathSum(root, 0)
