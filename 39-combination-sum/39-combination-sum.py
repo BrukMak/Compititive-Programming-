@@ -4,14 +4,15 @@ class Solution:
         N = len(candidates)
         def allSum(cur, c_sum, idx):
             if c_sum == target:
-                res.append(cur)
+                res.append(list(cur))
                 return
             if c_sum > target: return
             
             for i in range(idx, N):
-                allSum(cur + [candidates[i]], c_sum + candidates[i], i)
+                cur = list(cur)
+                allSum(tuple(cur + [candidates[i]]), c_sum + candidates[i], i)
         
-        allSum([], 0, 0)
+        allSum((), 0, 0)
         
         return res
                 
