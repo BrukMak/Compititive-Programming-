@@ -33,7 +33,3 @@ class Solution:
                 return root
             d_count += 1
         
-        
-        return 
-            
-            
