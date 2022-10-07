@@ -3,15 +3,14 @@ class Solution:
         n = len(graph)
         ans = []
         def dfs(node, path):
+            path.append(node)
             if node == n-1:
-                print(path)
-                ans.append(path[:])
+                ans.append(path.copy())
                 return
             
             for nei in graph[node]:
-                path += [nei]
                 dfs(nei, path)
                 path.pop()
-        dfs(0, [0])
+        dfs(0, [])
         return ans
             
