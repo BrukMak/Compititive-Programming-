@@ -1,18 +1,21 @@
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         res = []
-        N = len(candidates)
-        def allSum(cur, c_sum, idx):
-            if c_sum == target:
-                res.append(list(cur))
+        def uniqueComb(idx, curSum, curArr):
+            if curSum > target: return
+            if idx >= len(candidates):
+                if curSum == target:
+                    # print(curArr)
+                    res.append(curArr.copy())
                 return
-            if c_sum > target: return
             
-            for i in range(idx, N):
-                cur = list(cur)
-                allSum(tuple(cur + [candidates[i]]), c_sum + candidates[i], i)
-        
-        allSum((), 0, 0)
-        
+            curSum += candidates[idx]
+            curArr.append(candidates[idx])
+            uniqueComb(idx , curSum , curArr)
+
+            curSum -= candidates[idx]
+            curArr.pop()
+            uniqueComb(idx + 1, curSum, curArr)
+            
+        uniqueComb(0, 0, [])
         return res
-                
