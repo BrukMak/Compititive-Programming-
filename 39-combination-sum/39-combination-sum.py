@@ -1,15 +1,16 @@
 class Solution:
-    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        res = []
-        def uniqueComb(idx, curArr, tar):
+    def uniqueComb(self, candidates, idx, curArr, tar):
             if idx >= len(candidates):
                 if tar == 0:
                     # print(curArr)
-                    res.append(curArr.copy())
+                    self.res.append(curArr.copy())
                 return
             if tar - candidates[idx] >= 0:
-                uniqueComb(idx, curArr + [candidates[idx]], tar - candidates[idx])
-            uniqueComb(idx + 1, curArr, tar)
+                self.uniqueComb(candidates, idx, curArr + [candidates[idx]], tar - candidates[idx])
+            self.uniqueComb(candidates, idx + 1, curArr, tar) 
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        self.res = []
+        
                         
-        uniqueComb(0, [], target)
-        return res
+        self.uniqueComb(candidates, 0, [], target)
+        return self.res
