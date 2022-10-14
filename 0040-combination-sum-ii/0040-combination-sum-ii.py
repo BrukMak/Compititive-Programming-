@@ -3,14 +3,12 @@ class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
         res = set()
         N = len(candidates)
-        # vis = set()
+        candidates.sort()
         @cache
         def helper(idx, curArr, target):
             if idx >= N:
-                curArr = sorted(list(curArr))
                 if target == 0:
-                    # vis.add(tuple(curArr))
-                    ans = curArr.copy()
+                    ans = list(curArr).copy()
                     
                     res.add(tuple(ans))
                 return
@@ -20,3 +18,10 @@ class Solution:
             
         helper(0, (), target)
         return res
+    
+    """
+        concatnating to a tuple => (a,b) + (c,)
+        reurning set() => could be evaluated as list
+        set of tuple could be considered as list of list
+        
+    """
