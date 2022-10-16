@@ -24,4 +24,11 @@ class Solution:
                 else:
                     l = mid + 1
         return minOp if minOp < float('inf') else -1
+    
+    """
+    Creating prefix sum list and postfix list:
+        Trying to find the target as a combination of the two lists
+        Time O(nlog(n))
+        space O(n)
+    """
             
