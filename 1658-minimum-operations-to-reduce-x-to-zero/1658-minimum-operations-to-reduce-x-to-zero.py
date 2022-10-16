@@ -2,33 +2,29 @@ class Solution:
     def minOperations(self, nums: List[int], x: int) -> int:
         N = len(nums)
         prefix = [0]
-        postfix = [0]*(N + 1)
+        postfix = defaultdict(int)
+        postfix[0] = N
         for i in nums:
             prefix.append(prefix[-1] + i)
+        post = 0
         for j in range(N-1, -1, -1):
-            postfix[j] = postfix[j+1] + nums[j]
-        # postfix.reverse()
-        # print(prefix, postfix)
+            post += nums[j]
+            postfix[post] = j
         minOp = float('inf')
         for i in range(N+1):
-            l, r = i, N
-            
-            while r >= l:
-                mid = l + (r - l) // 2
-                curSum = prefix[i] + postfix[mid]
-                if curSum == x:
-                    minOp = min(minOp, i + N-mid)
-                    break
-                elif   curSum < x:
-                    r = mid - 1
-                else:
-                    l = mid + 1
+            cur = x - prefix[i]
+            if cur in postfix:
+                index_from_back = postfix[cur]
+                if index_from_back >= i:
+                    minOp = min(minOp, i + (N - index_from_back))
+                    
         return minOp if minOp < float('inf') else -1
     
     """
-    Creating prefix sum list and postfix list:
-        Trying to find the target as a combination of the two lists
-        Time O(nlog(n))
-        space O(n)
+    Creating prefix sum list ad postfix hash table for fast look up 
+        Trying to find the target as a combination of the prefix and 
+            find candidate from the hash table
+        Time O(n)
+        Space O(n)
     """
             
