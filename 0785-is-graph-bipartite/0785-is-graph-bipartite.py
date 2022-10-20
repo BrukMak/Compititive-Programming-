@@ -1,28 +1,30 @@
 class Solution:
     def isBipartite(self, graph: List[List[int]]) -> bool:
-        # color = [-1] * len(graph)
-        color = [0] * len(graph) # Number of node
-        def checkBipartite(node, cur):
-            if color[node] == 0: 
-                color[node] = cur
-
-            for neighbour in graph[node]:
-                if color[neighbour] == 0:
-                    color[neighbour] = -cur
-                    
-                    if not checkBipartite(neighbour, -cur):
-                        return False
-                elif color[node] == color[neighbour]:
-                    return False
-
-            return True
-                    
-            
-        for i in range(len(graph)):
+        color = [0] * len(graph)
+        for i in range(len(color)):
             if color[i] == 0:
-                if not checkBipartite(i, 1):
+                if not self.bfs(graph, color, i):
                     return False
         return True
-            
         
+    
+    def bfs(self, graph, color, node):
+        
+        que = deque()
+        que.append(node)
+        # color[node] = 1
+        while que:
+            size = len(que)
+            current = que.popleft()
+            if color[current] == 0:
+                color[current] = 1
+            for _ in range(size):
+                for neighbour in graph[current]:
+                    if color[neighbour] == 0:
+                        color[neighbour] = -color[current]
+                        que.append(neighbour)
+                    else:
+                        if color[neighbour] == color[current]:
+                            return False
+        return True
         
