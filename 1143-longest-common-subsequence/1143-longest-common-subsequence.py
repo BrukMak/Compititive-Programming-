@@ -1,13 +1,20 @@
 class Solution:
     def longestCommonSubsequence(self, text1: str, text2: str) -> int:
-        def subsequence(p1, p2, memo={}):
-            if (p1,p2) in memo: return memo[(p1,p2)]
-            if p1 >= len(text1) or p2 >= len(text2):
-                return 0 
-            if text1[p1] == text2[p2]:
-                return subsequence(p1+1, p2+1)+1
-
-            memo[(p1,p2)] = max(subsequence(p1+1, p2, memo), subsequence(p1, p2+1, memo))
-            return memo[(p1, p2)]
+        @cache
+        def helper(pointer1, pointer2):
+            
+            if pointer1 >= len(text1) or pointer2 >= len(text2):
+                return 0
+            
+            # answer = 0
+            if text1[pointer1] == text2[pointer2]:
+                return 1 + helper(pointer1 + 1, pointer2 + 1)
+            else:
+                choice1 = helper(pointer1 + 1, pointer2)
+                choice2 = helper(pointer1, pointer2 + 1)
+                
+                return max(choice1, choice2)
+            # return answer
         
-        return subsequence(0, 0)
+        return helper(0, 0)
+        
