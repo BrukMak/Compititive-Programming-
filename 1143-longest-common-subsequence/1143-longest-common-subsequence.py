@@ -8,12 +8,12 @@ class Solution:
             
 #             answer = 0
 #             if text1[pointer1] == text2[pointer2]:
-#                 return 1 + helper(pointer1 + 1, pointer2 + 1)
+#                 answer =  1 + helper(pointer1 + 1, pointer2 + 1)
 #             else:
 #                 choice1 = helper(pointer1 + 1, pointer2)
 #                 choice2 = helper(pointer1, pointer2 + 1)
                 
-#                 answer += max(choice1, choice2)
+#                 answer = max(choice1, choice2)
 #             return answer
         
 #         return helper(0, 0)
