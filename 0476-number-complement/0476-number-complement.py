@@ -1,12 +1,8 @@
 class Solution:
     def findComplement(self, num: int) -> int:
         
-        binary_num = bin(num)
-        result = []
-        for i in binary_num[2:]:
-            if int(i):
-                result.append('0')
-            else:
-                result.append('1')
-        # print(result)
-        return int("".join(result), 2)
+        exp = ceil(log((num + 1), 2))
+        
+        target = (2 ** exp) - 1 
+        print((2 ** 31) - 1)
+        return num ^ target & ((2 ** 31) - 1)
