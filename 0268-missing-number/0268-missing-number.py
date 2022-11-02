@@ -1,6 +1,10 @@
 class Solution:
     def missingNumber(self, nums: List[int]) -> int:
-        N = len(nums)
-        cur_sum = sum(nums)
-        target_sum = N * (N + 1) // 2
-        return target_sum - cur_sum
+        # XOR with each elemet in the array
+        # XOR 0 - N 
+        # XOR the two results
+        res = len(nums)
+        for i in range(len(nums)):
+            res ^= nums[i]
+            res ^= i
+        return res
