@@ -1,8 +1,10 @@
 class Solution:
     def findComplement(self, num: int) -> int:
-        
-        exp = ceil(log((num + 1), 2))
-        
-        target = (2 ** exp) - 1 
-        print((2 ** 31) - 1)
-        return num ^ target & ((2 ** 31) - 1)
+        shift = 0
+        res = 0
+        while num:
+            if not num & 1:
+                res |= 1 << shift
+            shift += 1
+            num = num >> 1
+        return res
