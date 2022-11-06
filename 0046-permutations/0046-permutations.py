@@ -1,18 +1,16 @@
 class Solution:
-    def backTrack(self, nums, cur, ans, flag):
-        if len(nums) == len(cur):
-            ans.append(cur[:])
+    temp = set()
+    def backTrack(self,index, nums, ans):
+        self.temp.add(tuple(nums))
+        if index == len(nums):
+            ans.append(nums[:])
             return
-            
-        for i in range(len(nums)):
-            check_point = 1 << i
-            if not (flag & check_point):
-                flag |= check_point
-                
-                self.backTrack(nums, cur + [nums[i]], ans, flag)
-                flag ^= check_point
+    
+        for i in range(index, len(nums)):
+            nums[i], nums[index] = nums[index], nums[i]
+            self.backTrack(index + 1, nums, ans)
+            nums[i], nums[index] = nums[index], nums[i] # on back tracking ALWAYS REMEMBER TO RESTORE WHAT You have changed!!!!!!!!!!!!!!!!!!!!!
     def permute(self, nums: List[int]) -> List[List[int]]:
-        flag = 0
         ans = []
-        self.backTrack(nums, [], ans, flag)
+        self.backTrack(0, nums, ans)
         return ans
