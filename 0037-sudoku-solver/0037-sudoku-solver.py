@@ -7,6 +7,7 @@ class Solution:
         group = []
         for i in range(3):
             group.append([i for i in range(i * 3, ((i + 1) * 3))])
+            
         for r in range(9):
             for c in range(9):
                 if board[r][c] == '.':
@@ -20,12 +21,12 @@ class Solution:
             if board[i][col] == str(candidate) or board[row][i] == str(candidate):
                 return False
         
-        for arr in group:
-            if row in arr:
-                for g in group:
-                    if col in g:
-                        for r in arr:
-                            for c in g:
+        for row_arr in group:
+            if row in row_arr:
+                for col_arr in group:
+                    if col in col_arr:
+                        for r in row_arr:
+                            for c in col_arr:
                                 if board[r][c] == str(candidate):
                                     return False
         return True
