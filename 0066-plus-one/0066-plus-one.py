@@ -6,7 +6,6 @@ class Solution:
         
         num = int(num)
         num += 1
-        num = str(num)
-        ans = []
-        [ans.append(int(n)) for n in num]
-        return ans
+        num = [*str(num)]
+        
+        return num
