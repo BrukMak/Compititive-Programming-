@@ -1,30 +1,25 @@
 class Solution:
     def isBipartite(self, graph: List[List[int]]) -> bool:
-        color = [0] * len(graph)
-        for i in range(len(color)):
-            if color[i] == 0:
-                if not self.bfs(graph, color, i):
+        N = len(graph)
+        color = [0] * N
+        for node in range(N):
+            if color[node] == 0:
+                if not self.coloring(node, graph, color, 1):
                     return False
         return True
-        
-    
-    def bfs(self, graph, color, node):
-        
-        que = deque()
-        que.append(node)
-        # color[node] = 1
-        while que:
-            size = len(que)
-            current = que.popleft()
-            if color[current] == 0:
-                color[current] = 1
-            for _ in range(size):
-                for neighbour in graph[current]:
-                    if color[neighbour] == 0:
-                        color[neighbour] = -color[current]
-                        que.append(neighbour)
-                    else:
-                        if color[neighbour] == color[current]:
-                            return False
+    # Color every node with alternating colors
+    # if Neighbour of a node has same color return False
+    def coloring(self, node, graph, color, cur_color):
+        if color[node] == 0:
+            color[node] = cur_color
+            
+        for neighbour in graph[node]:
+            if color[neighbour] == 0:
+                color[neighbour] = -cur_color
+                if not self.coloring(neighbour, graph, color, -cur_color):
+                    return False
+            elif color[neighbour] == color[node]:
+                return False
         return True
+        
         
