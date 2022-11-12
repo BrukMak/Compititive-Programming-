@@ -4,9 +4,9 @@ class Solution:
         
         # The permutation start rom 1 ... n for each has (n! / n) part
         # So find out which part k is
-        # do all permutation for (n-1) elements
         # add the group representative to the front on each
-        # find the k - (leader - 1)*group_size
+        # k => k % group_Size
+        # remove the group rep from the group and redo
         
         nums = [i for i in range(1, n+1)]
         answer = []
