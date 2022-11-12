@@ -7,30 +7,20 @@ class Solution:
         # do all permutation for (n-1) elements
         # add the group representative to the front on each
         # find the k - (leader - 1)*group_size
+        
+        nums = [i for i in range(1, n+1)]
         answer = []
-        nums = [i for i in range(1 , n + 1)]
-        flag = [False for _ in range(n - 1)]
-        group_size = factorial(n - 1)
-        group_leader = ceil(k / group_size)
-        nums.remove(group_leader)
-        new_k = k - ((group_leader - 1) * group_size)
         
+        self.helper(nums, (k - 1), answer, n) # Since its zero indexed pass (k - 1)
+        return "".join(answer)
         
-        self.allPermutations(nums, flag, [], answer)
-        output = str(group_leader) + answer[new_k - 1]
-        return output
-    def allPermutations(self, arr, flag, cur, answer):
-        if len(cur) == len(arr):
-            answer.append("".join(cur))
-            return
-        for i in range(len(arr)):
-            if not flag[i]:
-                flag[i] = True
-                cur.append(str(arr[i]))
-                self.allPermutations(arr, flag, cur, answer)
-                cur.pop()
-                flag[i] = False
-            
-            
-            
+    def helper(self, nums, k, answer, n):
+        if len(nums) == 1:
+            answer.append(str(nums[0]))
+            return answer
+        g_size = factorial(n -1)
+        target = k // g_size
+        answer.append(str(nums[target]))
+        nums.remove(nums[target])
+        self.helper(nums, k % g_size, answer, n - 1)
         
