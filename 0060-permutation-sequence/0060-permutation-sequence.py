@@ -9,20 +9,18 @@ class Solution:
         # remove the group rep from the group and redo
         
         nums = [i for i in range(1, n+1)]
-        answer = []
-        
-        self.helper(nums, (k - 1), answer, n) # Since its zero indexed pass (k - 1)
-        return "".join(answer)
+        answer = self.helper(nums, (k - 1), "", n) # Since its zero indexed pass (k - 1)
+        return answer
         
     def helper(self, nums, k, answer, n):
         if len(nums) == 1:
-            answer.append(str(nums[0]))
+            answer += (str(nums[0]))
             return answer
         g_size = factorial(n -1)
         target = k // g_size
-        answer.append(str(nums[target]))
+        answer += (str(nums[target]))
         nums.remove(nums[target])
-        self.helper(nums, k % g_size, answer, n - 1)
+        return self.helper(nums, k % g_size, answer, n - 1)
 #         while nums:
         
 #             g_size = factorial(n -1)
