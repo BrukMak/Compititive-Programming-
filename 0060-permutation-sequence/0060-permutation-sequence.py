@@ -15,19 +15,19 @@ class Solution:
         return "".join(answer)
         
     def helper(self, nums, k, answer, n):
-#         if len(nums) == 1:
-#             answer.append(str(nums[0]))
-#             return answer
-#         g_size = factorial(n -1)
-#         target = k // g_size
-#         answer.append(str(nums[target]))
-#         nums.remove(nums[target])
-#         self.helper(nums, k % g_size, answer, n - 1)
-        while nums:
+        if len(nums) == 1:
+            answer.append(str(nums[0]))
+            return answer
+        g_size = factorial(n -1)
+        target = k // g_size
+        answer.append(str(nums[target]))
+        nums.remove(nums[target])
+        self.helper(nums, k % g_size, answer, n - 1)
+#         while nums:
         
-            g_size = factorial(n -1)
-            target = k // g_size
-            answer.append(str(nums[target]))
-            nums.remove(nums[target])
-            n -= 1
-            k %= g_size
+#             g_size = factorial(n -1)
+#             target = k // g_size
+#             answer.append(str(nums[target]))
+#             nums.remove(nums[target])
+#             n -= 1
+#             k %= g_size
