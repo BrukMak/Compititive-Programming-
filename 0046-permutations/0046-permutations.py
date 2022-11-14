@@ -1,7 +1,5 @@
 class Solution:
-    temp = set()
     def backTrack(self,index, nums, ans):
-        self.temp.add(tuple(nums))
         if index == len(nums):
             ans.append(nums[:])
             return
