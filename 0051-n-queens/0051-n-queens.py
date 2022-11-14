@@ -27,7 +27,9 @@ class Solution:
                 return False
             left_top_row += 1
             left_top_col += 1
-        right_top_row, right_top_col = row - (n - 1 - col), col + (n - 1 - col)
+        # right_top_row, right_top_col = row - (n - 1 - col), col + (n - 1 - col) PROBLEMATIC
+        change = min(row, n - 1 - col)
+        right_top_row, right_top_col = row - change, col + change
         while right_top_row < n and right_top_col >= 0:
             if board[right_top_row][right_top_col] == 'Q':
                 return False
