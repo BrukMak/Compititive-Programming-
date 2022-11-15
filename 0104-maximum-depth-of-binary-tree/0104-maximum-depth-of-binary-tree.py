@@ -7,20 +7,10 @@
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         
-        return self.bfs(root)
-    def bfs(self, node):
+        return self.max_depth(root)
+    def max_depth(self, node):
         if not node:
             return 0
-        q = deque()
-        answer = 0
-        q.append(node)
-        while q:
-            size = len(q)
-            answer += 1
-            for _ in range(size):
-                current = q.popleft()
-                if current.left:
-                    q.append(current.left)
-                if current.right:
-                    q.append(current.right)
-        return answer
+        left = self.max_depth(node.left) + 1
+        right = self.max_depth(node.right) + 1
+        return max(left, right)
