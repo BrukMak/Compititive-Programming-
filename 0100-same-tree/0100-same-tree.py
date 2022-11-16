@@ -9,13 +9,10 @@ class Solution:
         return self.inorder(p, q)
         
     def inorder(self, node1, node2):
-        if not node1 and not node2:
-            return True
         if not node1 or not node2:
-            return False
+            return node1 == node2
         if node1.val != node2.val:
             return False
-        
         left = self.inorder(node1.left, node2.left)
         right = self.inorder(node1.right, node2.right)
         if not left or not right:
