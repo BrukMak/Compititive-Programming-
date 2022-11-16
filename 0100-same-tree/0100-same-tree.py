@@ -18,5 +18,7 @@ class Solution:
         
         left = self.inorder(node1.left, node2.left)
         right = self.inorder(node1.right, node2.right)
+        if not left or not right:
+            return False
         return left and right
         
