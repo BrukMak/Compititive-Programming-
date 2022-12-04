@@ -28,7 +28,7 @@ class Solution:
                     l = mid + 1
                 else:
                     r = mid - 1
-            if 0<= mid_check<len(nums) and nums[mid_check] == target:
+            if nums[mid_check] == target:
                 answer.append([target, target])
             elif l == len(nums):
                 answer.append([nums[r], -1])
