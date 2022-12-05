@@ -12,7 +12,7 @@ class Solution:
                 if idx != i and i > 0 and candidates[i] == candidates[i-1]:
                     continue
                 if candidates[i] > target:
-                    break
+                    return
                 helper(i + 1, curArr + [candidates[i]], target - candidates[i])
             
         helper(0, [],target)
