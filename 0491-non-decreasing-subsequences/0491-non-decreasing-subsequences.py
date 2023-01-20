@@ -1,12 +1,7 @@
 class Solution:
-    def findSubsequences(self, nums: List[int]) -> List[List[int]]:
-        
+    def __init__(self):
         self.result = set()
-        self.allSubsequence(0, nums, [])
         
-        return self.result
-    
-    
     def allSubsequence(self, index, nums, current):
         if index == len(nums):
             if len(current) > 1:
@@ -21,3 +16,10 @@ class Solution:
         # skip
         self.allSubsequence(index + 1, nums, current)
             
+    def findSubsequences(self, nums: List[int]) -> List[List[int]]:
+        
+        self.allSubsequence(0, nums, [])
+        
+        return self.result
+    
+    
