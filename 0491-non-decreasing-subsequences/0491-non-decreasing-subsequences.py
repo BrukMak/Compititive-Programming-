@@ -1,13 +1,14 @@
 class Solution:
     def findSubsequences(self, nums: List[int]) -> List[List[int]]:
         
-        self.result = set()
+        self.result = []
         self.allSubsequence(0, nums, [])
         return self.result
     def allSubsequence(self, index, nums, current):
         if index == len(nums):
-            if len(current) > 1:
-                self.result.add(tuple(current[:]))
+            if len(current) > 1 and current not in self.result:
+                
+                self.result.append((current[:]))
             return
         # take
         if not current or current[-1] <= nums[index]:
