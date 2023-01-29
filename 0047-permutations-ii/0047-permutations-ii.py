@@ -1,19 +1,21 @@
 class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
-        status = [False] * len(nums)
-        nums.sort()
-        unique_permutations = set()
-        self.findPermutation(0, nums, unique_permutations)
+        
+        unique_permutations = []
+        self.findPermutation(nums, Counter(nums), [], unique_permutations)
         
         return unique_permutations
         
-    def findPermutation(self, index, nums,unique_permutations):
-        if index == len(nums):
-            unique_permutations.add(tuple(nums))
+    def findPermutation(self, nums, count, current, unique_permutations):
+        if len(current) == len(nums):
+            unique_permutations.append(current[:])
             return
-        
-        for i in range(index, len(nums)):
-            nums[i], nums[index] = nums[index], nums[i]
-            self.findPermutation(index + 1, nums, unique_permutations)
-            nums[index], nums[i] = nums[i], nums[index]
+        for num in count:
+            if count[num] > 0: 
+                count[num] -=1
+                current.append(num)
+                self.findPermutation(nums, count, current, unique_permutations)
+                count[num] += 1
+                current.pop()
+                
                 
