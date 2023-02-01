@@ -1,26 +1,31 @@
 class Solution:
     def numberOfWays(self, s: str) -> int:
-#         n = len(s)
-#         @lru_cache(maxsize = None)
-#         def ways(idx, cur):
-#             if idx >= n and len(cur) != 3: return 0
-#             if idx >= n and len(cur) == 3: return 1
-            
-#             if not cur or cur[-1] != s[idx]:
-#                 return ways(idx + 1, cur.append(s[idx])) + ways(idx+1, cur)
-#             else:
-#                 return  ways(idx+1, cur)
-        
-#         return ways(0, [])
 
-        dp = defaultdict(int)
-        for ch in s:
-            if ch == '0':
-                dp[ch] += 1
-                dp['10'] += dp['1']
-                dp['010'] += dp['01']
+        prefix = [(0,0)]
+        sufix = [(0,0)]
+        n = len(s)
+        
+        for i in range(n):
+            prev_count_zero = prefix[-1][0]
+            prev_count_one = prefix[-1][1]
+            if s[i] == '0':
+                prefix.append((prev_count_zero + 1, prev_count_one))
             else:
-                dp[ch] += 1
-                dp['01'] += dp['0']
-                dp['101'] += dp['10']
-        return dp['101'] + dp['010']
+                prefix.append((prev_count_zero, prev_count_one + 1))
+        for i in range(n-1, -1, -1):
+            prev_count_zero = sufix[-1][0]
+            prev_count_one = sufix[-1][1]
+            if s[i] == '0':
+                sufix.append((prev_count_zero + 1, prev_count_one))
+            else:
+                sufix.append((prev_count_zero, prev_count_one + 1))
+        
+        sufix = sufix[::-1]
+        answer = 0
+        for i in range(1, n - 1):
+            if s[i] == '0':
+                answer += prefix[i][1] * sufix[i][1]
+            else:
+                answer += prefix[i][0] * sufix[i][0]
+        
+        return answer
