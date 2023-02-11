@@ -6,16 +6,38 @@
 
 class Solution:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
-        visited = set()
+        
+        lenA = 0
+        lenB = 0
         cur1 = headA
-        while cur1:
-            visited.add(cur1)
-            cur1 = cur1.next
-            
         cur2 = headB
+        while cur1:
+            lenA += 1
+            cur1 = cur1.next
         while cur2:
-            if cur2 in visited: return cur2
+            lenB += 1
+            cur2 = cur2.next
+        if lenA > lenB:
+            cur1 = headA
+            d = lenA - lenB
+            while d:
+                cur1 = cur1.next
+                d -= 1
+            cur2 = headB
+        elif lenA < lenB:
+            cur2 = headB
+            d = lenB - lenA
+            while d:
+                cur2 = cur2.next
+                d -= 1
+            cur1 = headA
+        else:
+            cur1 = headA
+            cur2 = headB
+        while cur1:
+            if cur1 == cur2:
+                return cur1
+            cur1 = cur1.next
             cur2 = cur2.next
             
-        return
-            
+        return None
