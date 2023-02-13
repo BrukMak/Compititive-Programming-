@@ -5,6 +5,7 @@ class Solution:
         prev_mod = defaultdict(int)
         prev_mod[0] = 1
         subarrays = 0
+        
         for i in range(len(nums)):
             prefix += nums[i]
             mod = prefix % k
