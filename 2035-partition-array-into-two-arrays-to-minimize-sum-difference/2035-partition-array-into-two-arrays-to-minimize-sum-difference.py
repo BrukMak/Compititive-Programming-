@@ -5,10 +5,11 @@ class Solution:
         target = sum(nums) / 2
         l, r = nums[:n], nums[n:]
         ans = float('inf')
-        for k in range(n):
-            right_sums = sorted(set(map(sum, combinations(r, n - k))))
-            for left_sum in set(map(sum, combinations(l, k))):
-                i = bisect_left(right_sums, target - left_sum)
-                if i != len(right_sums):
-                    ans = min(ans, abs(target - left_sum - right_sums[i]))
+        
+        for i in range(n):
+            right_sums = sorted(set(map(sum, combinations(r, n - i))))
+            for left_sum in set(map(sum, combinations(l, i))):
+                index = bisect_left(right_sums, target - left_sum)
+                if index != len(right_sums):
+                    ans = min(ans, abs(target - left_sum - right_sums[index]))
         return int(2 * ans)
