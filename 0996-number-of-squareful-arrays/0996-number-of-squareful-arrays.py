@@ -3,7 +3,7 @@ class Solution:
     def numSquarefulPerms(self, nums: List[int]) -> int:
         res = []
 
-        def dfs(nums, current):
+        def findPermutation(nums, current):
             if not nums:
                 res.append(current)
                 return 
@@ -16,10 +16,10 @@ class Solution:
                     continue
 
                 current.append(nums[i])
-                dfs(nums[:i] + nums[i + 1:], current)
+                findPermutation(nums[:i] + nums[i + 1:], current)
                 current.pop()
         nums.sort()
-        dfs(nums,[])
+        findPermutation(nums,[])
         return len(res)
 
     def is_perfect_square(self,num):
