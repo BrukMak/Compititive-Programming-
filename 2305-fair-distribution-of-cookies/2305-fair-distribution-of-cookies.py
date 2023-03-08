@@ -8,8 +8,6 @@ class Solution:
             if index == len(cookies):
                 result = min(result, max(children))
                 return 
-            if max(children) >= result:
-                return 
             for i in range(k):
                 if result > children[i] + cookies[index]:
                     children[i] += cookies[index]
