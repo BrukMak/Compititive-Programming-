@@ -15,7 +15,7 @@ class Solution:
                     children[i] += cookies[index]
                     distribute(index + 1)
                     children[i] -= cookies[index]
-                
+        cookies.sort(reverse = True)        
         distribute(0)
         
         return result
