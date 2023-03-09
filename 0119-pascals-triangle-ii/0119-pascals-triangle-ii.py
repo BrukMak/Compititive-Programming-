@@ -7,6 +7,8 @@ class Solution:
         prev_level.append(0)
         res = []
         for i in range(len(prev_level)):
-            res += [prev_level[i]] if i == 0 else [prev_level[i-1] + prev_level[i]]
-                
+            if i == 0:
+                res.append(prev_level[i])
+            else:
+                res.append(prev_level[i-1] + prev_level[i])
         return res
