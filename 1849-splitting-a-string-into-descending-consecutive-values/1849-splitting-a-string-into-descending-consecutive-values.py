@@ -2,17 +2,17 @@ class Solution:
     def splitString(self, s: str) -> bool:
         n = len(s)
         # Make sure the list gonna have atleast two elements
-        
-        for i in range(1, n):
-            if self.spliter(i, [int(s[:i])], n, s):
-                return True
-        return False
+        return self.spliter(0, [], n, s)
     
     def spliter(self, index, cur, n, s):
-        if index >= n:
+        if index >= n and len(cur) > 1:
             return True
+        if index >= n:
+            return False
+        
+    
         for i in range(index+1, n+1):
-            if cur[-1] - 1 == int(s[index:i]):
+            if not cur or cur[-1] - 1 == int(s[index:i]):
                 cur.append(int(s[index:i]))
                 if self.spliter(i, cur, n, s):
                     return True
