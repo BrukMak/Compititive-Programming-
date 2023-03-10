@@ -7,10 +7,7 @@ class Solution:
     def spliter(self, index, cur, n, s):
         if index >= n and len(cur) > 1:
             return True
-        if index >= n:
-            return False
         
-    
         for i in range(index+1, n+1):
             if not cur or cur[-1] - 1 == int(s[index:i]):
                 cur.append(int(s[index:i]))
