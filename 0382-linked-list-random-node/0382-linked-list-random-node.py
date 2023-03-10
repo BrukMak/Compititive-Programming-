@@ -13,7 +13,7 @@ class Solution:
             cur = cur.next
 
     def getRandom(self) -> int:
-        index = random.randint(0, len(self.arr) - 1)
+        index = int(random.random() * len(self.arr))
         return self.arr[index]
         
 
