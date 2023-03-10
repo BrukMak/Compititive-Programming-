@@ -6,17 +6,14 @@
 class Solution:
 
     def __init__(self, head: Optional[ListNode]):
-        self.size = 0
-        self.head = head
-        cur = head
         self.arr = []
+        cur = head
         while cur:
-            self.size += 1
             self.arr.append(cur.val)
             cur = cur.next
 
     def getRandom(self) -> int:
-        index = random.randint(0, self.size - 1)
+        index = random.randint(0, len(self.arr) - 1)
         return self.arr[index]
         
 
