@@ -1,8 +1,12 @@
 class Solution:
     def maximumDifference(self, nums: List[int]) -> int:
-        ans = 0
-        for i in range(len(nums)):
-            for j in range(i+1, len(nums)):
-                ans = max(ans, nums[j] - nums[i])
-        
-        return ans if ans else -1
+        max_difference = 0
+        increasing_stack = []
+        for val in nums:
+            while increasing_stack and increasing_stack[-1] > val:
+                increasing_stack.pop()
+            if increasing_stack:
+                max_difference = max(max_difference, val - increasing_stack[0])
+            increasing_stack.append(val)
+            
+        return max_difference if max_difference else -1
