@@ -15,12 +15,9 @@ class Solution:
         if node and not node.left and not node.right:
             current.append(str(node.val))
             answer[0] += int("".join(current))
-            current.pop()
             return
-        if not node: return
-        current.append(str(node.val))
-        self.findPaths(node.left, current, answer)
-        current.pop()
-        current.append(str(node.val))
-        self.findPaths(node.right, current, answer)
-        current.pop()
+        # if not node:
+        #     return
+        
+        if node.left: self.findPaths(node.left, current + [str(node.val)], answer)
+        if node.right: self.findPaths(node.right, current + [str(node.val)], answer)
