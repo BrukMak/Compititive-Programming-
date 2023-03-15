@@ -1,7 +1,7 @@
 class Solution:
     def PredictTheWinner(self, nums: List[int]) -> bool:
         N = len(nums)
-        @lru_cache(None)
+        @cache
         def helper(i, j):
             if i > j:
                 return 0
