@@ -1,20 +1,20 @@
 class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
-        res = []
-        N = len(candidates)
-        candidates.sort()
-        def helper(idx, curArr, target):
-            if target == 0:
-                res.append(curArr[:])
+        
+        
+        result = []
+        
+        def comb(index, curr, result):
+            if sum(curr) == target:
+                result.append(curr[:])
                 return
-
-            for i in range(idx, N):
-                if idx != i and i > 0 and candidates[i] == candidates[i-1]:
-                    continue
-                if candidates[i] > target:
-                    return
-                helper(i + 1, curArr + [candidates[i]], target - candidates[i])
             
-        helper(0, [],target)
-        return res
-    
+            for i in range(index, len(candidates)):
+                if i - 1 >= index and candidates[i] == candidates[i - 1]:
+                    continue
+                if candidates[i] + sum(curr) > target:
+                    break
+                comb(i+1, curr + [candidates[i]], result)
+        candidates.sort()
+        comb(0, [], result)
+        return result
