@@ -17,8 +17,6 @@ class Solution:
 
         left = self.find(node.left)
         right = self.find(node.right)
-        temp = node.val
-        node.val = abs(left - right)
-        self.res += node.val
-        return temp + left + right
+        self.res += abs(left - right)
+        return node.val + left + right
         
