@@ -19,7 +19,7 @@ class Solution:
         
         runningSum += node.val
         checkVal = runningSum - targetSum
-        if checkVal in prefixSum:
+        if prefixSum[checkVal] > 0:
             self.paths += prefixSum[checkVal]
         prefixSum[runningSum] += 1
         self.validCounter(node.left, runningSum, prefixSum, targetSum)
