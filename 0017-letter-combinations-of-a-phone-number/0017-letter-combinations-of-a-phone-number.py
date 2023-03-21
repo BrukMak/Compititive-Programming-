@@ -16,8 +16,8 @@ class Solution:
                     ans.append("".join(curr))
                 return
             
-            for i in range(len(mapping[digits[index]])):
-                s = mapping[digits[index]]
+            s = mapping[digits[index]]
+            for i in range(len(s)):
                 backtrack(index + 1, curr + [s[i]])
         backtrack(0, [])
         return ans
