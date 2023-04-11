@@ -1,7 +1,7 @@
 class Solution:
     def possibleBipartition(self, n: int, dislikes: List[List[int]]) -> bool:
-        if not dislikes:
-            return True
+        # if not dislikes:
+        #     return True
         color = [0 for _ in range(n+1)] 
         graph = defaultdict(list)
         for x, y in dislikes:
@@ -17,7 +17,6 @@ class Solution:
                 if color[child] == color[node]:
                         return False
                 if child not in visited:
-                    color[child] = -cur
                     if not dfs(child, -cur):
                         return False
             return True
