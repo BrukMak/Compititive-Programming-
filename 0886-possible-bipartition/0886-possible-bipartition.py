@@ -5,25 +5,20 @@ class Solution:
         for x, y in dislikes:
             graph[x].append(y)
             graph[y].append(x)
-        
-        def dfs(node, cur_color, ans):
-            if color[node] == 0:
-                color[node] = cur_color
-            visited.add(node)
-            for child in graph[node]:
-                if color[child] == color[node]:
-                        return False
-                if child not in visited:
-                    ans = ans and dfs(child, -cur_color, ans)
-            return ans
-        visited = set()
+            
         for i in range(1, n+1):
             if color[i] == 0:
-                # visited.add(i)
-                if not dfs(i, 1, True):
-                    return False
+                q = deque()
+                q.append(i)
+                color[i] = 1
+                while q:
+                    curr_node = q.pop()
+                    cur_color = color[curr_node]
+                    for child in graph[curr_node]:
+                        if color[child] == 0:
+                            color[child] = -1 * cur_color
+                            q.append(child)
+                        elif color[child] == color[curr_node]:
+                            return False
         return True
-
-
-
             
