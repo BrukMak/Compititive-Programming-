@@ -9,7 +9,6 @@ class Solution:
         
         while minHeap:
             val, i = heapq.heappop(minHeap)
-            print(val, i)
             if i > 0 and i < n-1:
                 if resArr[i-1] == float('inf') and resArr[i+1] == float('inf'):
                     resArr[i] = 1
