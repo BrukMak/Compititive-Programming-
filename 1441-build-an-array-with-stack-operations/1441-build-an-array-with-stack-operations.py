@@ -4,11 +4,10 @@ class Solution:
         operations = []
         for current_val in range(1, n+1):
             
+            operations.append('Push')
             if target[target_pointer] == current_val:
-                operations.append('Push')
                 target_pointer += 1
             else:
-                operations.append('Push')
                 operations.append('Pop')
 
                 
