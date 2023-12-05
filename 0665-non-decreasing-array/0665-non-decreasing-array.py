@@ -1,18 +1,22 @@
 class Solution:
     def checkPossibility(self, nums: List[int]) -> bool:
         
-        running_max = -inf
-        forward_operation = 0
-        for i in range(len(nums)-1):
-            running_max = max(running_max, nums[i])
-            if nums[i+1] < running_max:
-                forward_operation += 1
+        inc_stack = []
+        count = 0
+        for num in nums:
+            if len(inc_stack) > 1 and num < inc_stack[-2]:
+                inc_stack.append(inc_stack[-1])
+                count += 1
+                if count > 1:
+                    return False
+                continue
                 
-        running_min = inf
-        backward_operation = 0
-        for i in range(len(nums)-1, 0, -1):
-            running_min = min(running_min, nums[i])
-            if nums[i-1] > running_min:
-                backward_operation += 1
-
-        return backward_operation <= 1 or forward_operation <= 1
+            while inc_stack and num < inc_stack[-1]:
+                inc_stack.pop()
+                count += 1
+                if count > 1:
+                    return False
+            inc_stack.append(num)
+            
+        return True
+                
