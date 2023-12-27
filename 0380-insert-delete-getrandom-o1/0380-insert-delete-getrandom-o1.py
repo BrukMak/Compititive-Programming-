@@ -24,8 +24,7 @@ class RandomizedSet:
         
 
     def getRandom(self) -> int:       
-        rand_index = randint(0, len(self.values)-1)
-        return self.values[rand_index]
+        return random.choice(self.values)
         
 
 # Your RandomizedSet object will be instantiated and called as such:
