@@ -9,7 +9,7 @@ class Solution:
             if nums[r] == max_val:
                 max_count += 1
             while max_count >= k:
-                ans += 1 + len(nums) - (r + 1)
+                ans += len(nums) - r
                 if nums[l] == max_val:
                     max_count -= 1
                 l += 1
