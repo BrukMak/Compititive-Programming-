@@ -1,12 +1,4 @@
 class Solution:
     def findCenter(self, edges: List[List[int]]) -> int:
         
-        count = defaultdict(int)
-        for u, v in edges:
-            count[u] += 1
-            count[v] += 1
-            
-            if count[u] > 1:
-                return u
-            if count[v] > 1:
-                return v
+        return edges[0][0] if edges[0][0] in edges[1] else edges[0][1]
